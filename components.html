@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="big"></div>
+    <div class="small"></div>
+    <div class="test"></div>
+    <script type="text/babel">
+        //在react里面有两种组件1第一种是函数组件
+        function Component(props) {
+            return <h1>{props.name}</h1>
+        }
+        //该函数是一个有效的 React 组件，因为它接收唯一带有数据的 “props”（代表属性）
+        //对象与并返回一个 React 元素。这类组件被称为“函数组件”，因为它本质上就是 JavaScript 函数。
+
+
+        //第二种组件便是es6的class继承方法组件
+        class Welcome extends React.Component {
+            render() {
+                return <h1>{this.props.name}</h1>
+            }
+        }
+
+        //react可以使dom元素但是他也可以是我们所封装的组件
+        const element = <Welcome name='zhou' />
+        const elementTwo = <Component name='zhang' />
+        // 当 React 元素为用户自定义组件时，
+        //它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。
+        ReactDOM.render(element, document.querySelector('.big'))
+        ReactDOM.render(elementTwo, document.querySelector('.small'))
+        //注意： 组件名称必须以大写字母开头。
+        //React 会将以小写字母开头的组件视为原生 DOM 标签。
+
+
+        //还可以多次渲染一个组件
+        function Very() {
+            return (
+                <div>
+                    <Welcome name='zhou1' />
+                    <Welcome name='zhou2' />
+                    <Welcome name='zhou3' />
+                    <Welcome name='zhou4' />
+
+                </div>
+            )
+        }
+
+        function str(todo) {
+            if (todo) {
+                return <Welcome name='zhou1' />
+            } else {
+                return '哈哈哈'
+            }
+        }
+        //记得render的时候要用组件的方式渲染不然不行哦
+        // ReactDOM.render(str('hehe'), document.querySelector('.test'))
+        ReactDOM.render(<Very />, document.querySelector('.test'))
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dome</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="pig"></div>
+    <script type="text/babel">
+        //想要将一个 React 元素渲染到根 DOM 节点中，只需把它们一起传入 ReactDOM.render()：
+        //const element = <h1>Hello, world</h1>;
+        //ReactDOM.render(element, document.getElementById('root'));
+        //React 元素是不可变对象。一旦被创建，你就无法更改它的子元素或者属性。
+        //一个元素就像电影的单帧：它代表了某个特定时刻的 UI。
+        //根据我们已有的知识，更新 UI 唯一的方式是创建一个全新的元素，并将其传入
+        //在实践中，大多数 React 应用只会调用一次 ReactDOM.render()
+        //react会把更新前后的数据做比较只更新变化了的数据
+        function time() {
+            const elementui = <div>
+                <h2> 时间：{new Date().getSeconds()}</h2>
+            </div>
+            ReactDOM.render(elementui, document.querySelector('.pig'))
+            console.log('aa');
+        }
+
+        setInterval(time, 500)
+    </script>
+</body>
+
+</html>

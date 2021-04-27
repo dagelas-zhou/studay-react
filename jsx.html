@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- -->
+
+    <div class="big"></div>
+    <div class="small"></div>
+    <div class="midell"></div>
+    <script type="text/babel">
+        //react里面可以使用jsx  jsx可以直接在script里面写html用｛｝可以在里面嵌套数据
+        const name = ' zhou'
+
+        const xmls = <h1>{name}</h1>
+        ReactDOM.render(xmls, document.querySelector('.big'))
+        // 也可以在jsx里面嵌套函数 
+        function loser(user) {
+            return user.name + user.age
+        }
+        const user = {
+            name: 'xu',
+            age: '10'
+        }
+        const str = <h2>{loser(user)}</h2>
+        ReactDOM.render(str, document.querySelector('.small'))
+        //也就是说，你可以在 if 语句和 for 循环的代码块中使用 JSX，将 JSX 赋值给变量，把 JSX 当作参数传入，以及从函数中返回 JSX：
+        function text(koko) {
+            if (koko) {
+                return <h3>{loser(user)}</h3>
+            } else {
+                return <h1>Hello, Stranger.</h1>;
+            }
+        }
+        const koko = 'aaa'
+        ReactDOM.render(text(koko), document.querySelector('.midell'))
+        //你可以通过使用引号，来将属性值指定为字符串字面量：
+        const element = <div index='0' >{koko}</div>
+        // ReactDOM.render(element, document.querySelector('.midell'))
+        //也可以使用大括号，来在属性值中插入一个 JavaScript 表达式：
+        const elementTwo = <img src={user.age}></img>
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="app"></div>
+    <script type="text/babel">
+        class Click extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    num: 0
+                }
+            }
+
+            handClick() {
+                this.setState(state => ({
+                    num: state.num + 1
+                })
+                )
+                //this.setState({ num: this.state.num + 1 })
+            }
+            //第一种绑定要加bind把this放到组件上来才能用this.setSTate和this.state
+            //第二种绑定事件的时候绑定事件函数
+            render() {
+                return (
+                    <div>
+                        {this.state.num}
+                        <button onClick={() => this.handClick()} >点我啊</button>
+
+                    </div>
+
+                )
+
+            }
+        }
+        ReactDOM.render(<Click />, document.querySelector('.app'))
+
+    </script>
+</body>
+
+</html>
