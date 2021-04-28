@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="app"></div>
+    <script type="text/babel">
+        // js能运用的所有运算符三元之类的在｛｝都可以运用在jsx里面都可以自由的写
+        function Login(props) {
+            return (
+                <button onClick={props.onClick} >登入</button>
+            )
+        }
+        function Logout(props) {
+            return (
+                <button onClick={props.onClick}>登出</button>
+            )
+        }
+        class HandClick extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    isLogin: true
+                }
+            }
+            handleLoginClick() {
+                this.setState({ isLogin: true })
+                console.log(this.state.isLogin);
+            }
+            handleLogOutClick() {
+                this.setState({ isLogin: false })
+                console.log(this.state.isLogin);
+            }
+            render() {
+                const isLogin = this.state.isLogin
+                let aa = 'hha'
+                return (
+                    <div>
+                        {this.state.isLogin ? <Logout onClick={() => this.handleLoginClick()} />
+                            :
+                            <Login onClick={() => this.handleLogOutClick()} />}
+                        {aa}
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <HandClick />,
+            document.querySelector('.app')
+        )
+        // ReactDOM.render(
+        //     <logout />,
+        //     document.querySelector('.app')
+        // )
+    </script>
+</body>
+
+</html>

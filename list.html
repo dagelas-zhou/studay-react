@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="app"></div>
+    <script type="text/babel">
+
+        function CopmonentsOne(props) {
+            return (
+                <h5>第一个组件</h5>
+            )
+        }
+        function CopmonentsTwo(props) {
+            return (
+                <h5>第二个组件</h5>
+            )
+        }
+
+
+        class List extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    item: [
+                        { name: 'zhou', id: 1 },
+                        { name: 'zhang', id: 2 },
+                    ],
+                    name: 'kekeke'
+                }
+            }
+            buttonClick() {
+                let item = [...this.state.item, { name: 'kekeke', id: 3 }]
+
+                this.setState(state => ({
+                    item,
+                    name: 'wuwuwuw'
+                }))
+                // this.setState({ item, name: 'lllll' })
+                setTimeout(() => {
+                    console.log(this.state.item, this.state.name);
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <button onClick={() => this.buttonClick()} >改变</button>
+                        {  this.state.item.map(i => <h1 key={i.id} > {i.name} </h1>)}
+                        {this.state.name === 'kekeke' ? <CopmonentsOne /> : <CopmonentsTwo />}
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<List />, document.querySelector('.app'))
+
+    </script>
+</body>
+
+</html>
